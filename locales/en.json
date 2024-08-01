@@ -33,5 +33,10 @@
         "account":"Account",
         "appSettings":"App Settings",
         "account&Settings":"Account & Settings"
-    }
+    
+    },
+    "Subtotal" : "Subtotal",
+    "Shopping" : "Shopping",
+    "TotalCost" : "Total Cost",
+    "Checkout" : "Checkout" ,
 }

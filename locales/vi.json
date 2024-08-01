@@ -33,5 +33,10 @@
         "account":"Tài khoản",
         "appSettings":"Cài đặt ứng dụng",
         "account&Settings":"Tài khoản & Cài đặt"
-    }
+    
+    },
+    "Subtotal" : "Tổng chi phí",
+    "Shopping" : "Giá mua ",
+    "TotalCost" : "Tổng thanh toán",
+    "Checkout" : "Thanh Toán "
 }
