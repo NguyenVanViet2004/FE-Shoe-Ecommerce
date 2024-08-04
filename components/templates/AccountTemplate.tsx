@@ -9,8 +9,11 @@ import Header from '~/components/molecules/common/Header'
 import getColors from '~/constants/Colors'
 import dataMethodAccount from '~/constants/DataMethodAccount'
 import dataMethodSetting from '~/constants/DataMethodSetting'
+
+import useTranslation from './../../hooks/useTranslation'
 const AccountTemplate: React.FC = () => {
   const colors = getColors(useColorScheme())
+  const { t } = useTranslation()
 
   const handleSwitchChange = (checked: boolean): void => {
     console.log('Switch state :', checked)
@@ -22,12 +25,16 @@ const AccountTemplate: React.FC = () => {
         <View
           flex={1}
           paddingBottom={120}
-          paddingHorizontal={20}>
+          paddingHorizontal={20}
+          marginTop={20}>
 
-          <Header title="account&Settings" centered />
+          <Header title={t('account.account&Settings')} centered />
 
           <View marginVertical={24}>
-            <Header title="account" centered={false} fontSize={24}/>
+            <Header
+              title={t('account.account')}
+              centered={false}
+              fontSize={24}/>
           </View>
 
           {dataMethodAccount.map((method) => (

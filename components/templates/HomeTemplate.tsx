@@ -22,7 +22,11 @@ const HomeTemplate: React.FC = () => {
   return (
     <SafeArea>
       <ScrollView>
-        <View flex={1} paddingHorizontal={20} paddingBottom={130}>
+        <View
+          flex={1}
+          paddingHorizontal={20}
+          paddingBottom={130}
+          marginTop={20}>
 
           <Header
             leftIcon={

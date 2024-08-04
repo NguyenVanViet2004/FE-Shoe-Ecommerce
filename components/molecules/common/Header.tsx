@@ -4,20 +4,17 @@ import { useColorScheme } from 'react-native'
 import { Button, Image, Text, type TextProps, XStack, YStack } from 'tamagui'
 
 import getColors from '~/constants/Colors'
-import useTranslation from '~/hooks/useTranslation'
 
 type Props = {
   leftIcon?: number | React.ReactElement
   rightIcon?: number | React.ReactElement
   title?: string
-  subtitle?: string
   centered?: boolean
 } & TextProps
 
 const Header: React.FC<Props> =
-  ({ leftIcon, rightIcon, title, subtitle, centered = true, ...textProp }) => {
+  ({ leftIcon, rightIcon, title, centered = true, ...textProp }) => {
     const colors = getColors(useColorScheme())
-    const { t } = useTranslation()
     const renderIcon = (icon: number | ReactElement): React.ReactElement => {
       if (isNumber(icon)) {
         return <Image source={icon} />
@@ -41,15 +38,16 @@ const Header: React.FC<Props> =
           fontSize={16}
           fontWeight={500}
           {...textProp}>
-          {t('account.' + title)}</Text>
+          {title}</Text>
       )
     }
 
     return (
-      <YStack marginTop={20}>
+      <YStack >
         <XStack
           alignItems="center"
           justifyContent={centered ? 'space-between' : 'flex-start'}>
+
           {!isNil(leftIcon) && renderIcon(leftIcon)}
 
           {!isNil(title) && (
@@ -61,20 +59,9 @@ const Header: React.FC<Props> =
             </XStack>
           )}
 
-          {!isNil(title) && !isNil(subtitle) && (
-            <YStack alignItems="center" gap={10}>
-              <Text fontSize={28} fontWeight="bold" color={colors.midnightBlue}>
-                {title}
-              </Text>
-              <Text fontSize={16} fontWeight={500} color={colors.slateGray}>
-                {subtitle}
-              </Text>
-            </YStack>
-          )}
           {!isNil(rightIcon) && renderIcon(rightIcon)}
         </XStack>
       </YStack>
     )
   }
-
 export default Header
