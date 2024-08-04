@@ -11,7 +11,7 @@ import InputForm from '~/components/molecules/InputForm'
 import getColors from '~/constants/Colors'
 import useTranslation from '~/hooks/useTranslation'
 
-const SignInTemplate: React.FC = (): JSX.Element => {
+const SignUpTemplate: React.FC = (): JSX.Element => {
   const { t } = useTranslation()
   const colors = getColors(useColorScheme())
   const router = useRouter()
@@ -19,18 +19,10 @@ const SignInTemplate: React.FC = (): JSX.Element => {
   const handleBack = (): void => {
     router.back()
   }
-
-  const redirectToSignUp = (): void => {
-    router.push('/authentication/SignUp')
+  const redirectToSignIn = (): void => {
+    router.push('/authentication/SignIn')
   }
 
-  const redirectToForgot = (): void => {
-    router.push('/authentication/Forgot')
-  }
-
-  const ButtonSignin = (): void => {
-    router.replace('/BottomBar')
-  }
   return (
     <SafeArea style={{
       ...styles.container,
@@ -46,36 +38,34 @@ const SignInTemplate: React.FC = (): JSX.Element => {
           }/>
 
         <Header
-          title={t('signIn.helloAgain')}
+          title={t('signUp.createAccount')}
           fontSize={28}
           fontWeight="bold"
         />
 
         <Header
           marginTop={8}
-          title={t('signIn.welcomeBackYouHaveBeenMissed')}
+          title={t('signUp.letsCreateAccountTogether')}
           fontSize={16}
           color={colors.slateGray}
         />
       </View>
 
       <InputForm
-        visibleRecoveryPassword={true}
-        visibleFormInputWithLabel={false}
-        onLoginPress={ButtonSignin}
-        onRecoveryPasswordPress={redirectToForgot}
-        buttonTitle={t('signIn.signIn')}
-        googleButtonTitle={t('signIn.signInWithGoogle')}/>
+        visibleFormInputWithLabel={true}
+        visibleRecoveryPassword={false}
+        buttonTitle={t('signUp.signUp')}
+        googleButtonTitle={t('signUp.signInWithGoogle')} />
 
       <FooterComponent
-        onPressAuthScreen={redirectToSignUp}
-        title={t('signIn.doNotHaveAnAccount')}
-        subtitle={t('signIn.signUpForFree')} />
+        onPressAuthScreen={redirectToSignIn}
+        title={t('signUp.alreadyHaveAnAccount')}
+        subtitle={t('signUp.signIn')} />
 
     </SafeArea>
   )
 }
-export default SignInTemplate
+export default SignUpTemplate
 
 const styles = StyleSheet.create({
   container: {

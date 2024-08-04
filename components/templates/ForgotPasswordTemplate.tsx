@@ -4,14 +4,14 @@ import React from 'react'
 import { StyleSheet, useColorScheme } from 'react-native'
 import { View } from 'tamagui'
 
+import FormInputWithLabel from '~/components/atoms/FormInputWithLabel'
+import { PositiveButton } from '~/components/atoms/PositiveButton'
 import SafeArea from '~/components/atoms/SafeArea'
-import FooterComponent from '~/components/molecules/common/Footer'
 import Header from '~/components/molecules/common/Header'
-import InputForm from '~/components/molecules/InputForm'
 import getColors from '~/constants/Colors'
 import useTranslation from '~/hooks/useTranslation'
 
-const SignInTemplate: React.FC = (): JSX.Element => {
+const ForgotPasswordTemplate: React.FC = (): JSX.Element => {
   const { t } = useTranslation()
   const colors = getColors(useColorScheme())
   const router = useRouter()
@@ -20,23 +20,11 @@ const SignInTemplate: React.FC = (): JSX.Element => {
     router.back()
   }
 
-  const redirectToSignUp = (): void => {
-    router.push('/authentication/SignUp')
-  }
-
-  const redirectToForgot = (): void => {
-    router.push('/authentication/Forgot')
-  }
-
-  const ButtonSignin = (): void => {
-    router.replace('/BottomBar')
-  }
   return (
     <SafeArea style={{
       ...styles.container,
       backgroundColor: colors.lightSilver
     }}>
-
       <View marginTop={20}>
         <Header
           leftIcon={
@@ -46,40 +34,36 @@ const SignInTemplate: React.FC = (): JSX.Element => {
           }/>
 
         <Header
-          title={t('signIn.helloAgain')}
+          title={t('forgotPassword.recoveryPassword')}
           fontSize={28}
-          fontWeight="bold"
-        />
+          fontWeight="bold"/>
 
         <Header
+          textAlign="center"
           marginTop={8}
-          title={t('signIn.welcomeBackYouHaveBeenMissed')}
+          title={t('forgotPassword.pleaseEnterYourEmail')}
           fontSize={16}
-          color={colors.slateGray}
-        />
+          color={colors.slateGray}/>
       </View>
 
-      <InputForm
-        visibleRecoveryPassword={true}
-        visibleFormInputWithLabel={false}
-        onLoginPress={ButtonSignin}
-        onRecoveryPasswordPress={redirectToForgot}
-        buttonTitle={t('signIn.signIn')}
-        googleButtonTitle={t('signIn.signInWithGoogle')}/>
+      <FormInputWithLabel
+        label={t('emailAddress')}
+        placeholder={t('enterEmail')}
+      />
 
-      <FooterComponent
-        onPressAuthScreen={redirectToSignUp}
-        title={t('signIn.doNotHaveAnAccount')}
-        subtitle={t('signIn.signUpForFree')} />
+      <PositiveButton
+        title={t('forgotPassword.continue')}
+      />
 
     </SafeArea>
   )
 }
-export default SignInTemplate
+export default ForgotPasswordTemplate
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    gap: 50,
     paddingHorizontal: 20
   }
 })
